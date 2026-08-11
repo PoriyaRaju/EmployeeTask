@@ -7,7 +7,7 @@ namespace EmployeeTask
     internal class FullTimeEmployee : Employee,IPayable
     {
         private decimal _mothlySalary;
-        private decimal _bouns;
+        private decimal _bouns = 100;
 
         public decimal MonthlySalary { 
             get { return _mothlySalary; } 
@@ -23,12 +23,21 @@ namespace EmployeeTask
             } 
         }
 
-        public FullTimeEmployee(string name, string email, Department dept) : base(name,email,dept) { }
+        //public FullTimeEmployee() { };
+        public FullTimeEmployee(string name, string email, EmployeeType type, Department dept) : base(name, email, type, dept) { }
 
         public decimal CalculateSalary()
         {
             return _mothlySalary + _bouns;
         }
+
+        public decimal CalculateSalary(decimal bouns)
+        {
+            Bonus = bouns;
+            Console.WriteLine("Updated Bonus : " + _bouns);
+            return _mothlySalary + _bouns;
+        }
+
 
         public void GenerateSalarySlip()
         {

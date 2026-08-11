@@ -6,7 +6,7 @@ namespace EmployeeTask
 {
     internal class PartTimeEmployee : Employee,IPayable {
 
-        public PartTimeEmployee(string name, string email, Department dept) : base(name, email, dept) { }
+        public PartTimeEmployee(string name, string email, EmployeeType type, Department dept) : base(name, email, type, dept) { }
 
         private decimal _hourlyRate;
 

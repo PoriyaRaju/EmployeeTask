@@ -6,7 +6,7 @@ namespace EmployeeTask
 {
     internal class ContractEmployee : Employee,IPayable
     {
-        public ContractEmployee(string name, string email, Department dept) : base(name, email, dept) { }
+        public ContractEmployee(string name, string email, EmployeeType type ,Department dept) : base(name, email,type,dept) { }
 
         private decimal _fixedAmount;
 
