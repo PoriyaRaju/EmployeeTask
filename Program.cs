@@ -7,7 +7,6 @@ public class Program
         //Console.WriteLine("THis is Payroll Service");
 
         FullTimeEmployee e1 = new FullTimeEmployee("Raju", "rajuporiya@gmail.com", Employee.Department.BA_Dept);
-        //e1.AccountHolder();
         e1.Bonus = 200;
         e1.MonthlySalary = 1000;
         e1.CalculateSalary();
