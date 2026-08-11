@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal class ContractEmployee : Employee,IPayable
+    internal class ContractEmployee : Employee
     {
         public ContractEmployee(string name, string email, Department dept) : base(name, email, dept) { }
 
@@ -14,16 +14,6 @@ namespace EmployeeTask
         {
             get { return _fixedAmount; }
             set { _fixedAmount = value; }
-
-        }
-
-        public decimal CalculateSalary() { return _fixedAmount; }
-        
-        public void GenerateSalarySlip()
-        {
-            Console.WriteLine("Salary Slip : ");
-            base.AccountHolder();
-            Console.WriteLine($"Contact Amount :{FixedAmount} \nSalary : {this.CalculateSalary()} \n");
 
         }
     }

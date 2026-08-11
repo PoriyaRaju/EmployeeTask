@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal class PartTimeEmployee : Employee,IPayable {
+    internal class PartTimeEmployee : Employee {
 
         public PartTimeEmployee(string name, string email, Department dept) : base(name, email, dept) { }
 
@@ -21,19 +21,6 @@ namespace EmployeeTask
         {
             get { return _workingHour; }
             set { _workingHour = value; }
-
-        }
-
-        public decimal CalculateSalary()
-        {
-            return _hourlyRate * _workingHour;
-        }
-
-        public void GenerateSalarySlip()
-        {
-            Console.WriteLine("Salary Slip : ");
-            base.AccountHolder();
-            Console.WriteLine($"Hourly Salary :{_hourlyRate} \nWorking Hours : {_workingHour} \nSalary : {this.CalculateSalary()} \n");
 
         }
 
