@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal class PartTimeEmployee : Employee, IPayable
+    internal class PartTimeEmployee : Employee
     {
         private decimal _hourlyRate;
 
@@ -32,13 +32,13 @@ namespace EmployeeTask
             WorkingHour = workingHour;
         }
 
-        public decimal CalculateSalary()
+        public override decimal CalculateSalary()
         {
             this.Salary = _hourlyRate * _workingHour;
             return this.Salary;
         }
 
-        public void GenerateSalarySlip()
+        public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();

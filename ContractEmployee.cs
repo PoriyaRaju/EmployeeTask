@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal class ContractEmployee : Employee,IPayable
+    internal class ContractEmployee : Employee
     {
         private decimal _fixedAmount;
 
@@ -19,13 +19,13 @@ namespace EmployeeTask
             FixedAmount = fixedAmount;
         }
 
-        public decimal CalculateSalary() { 
+        public override decimal CalculateSalary() { 
             base.Salary = FixedAmount;
             return _fixedAmount; 
         
         }
         
-        public void GenerateSalarySlip()
+        public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();

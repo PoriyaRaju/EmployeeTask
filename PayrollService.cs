@@ -105,16 +105,16 @@ namespace EmployeeTask
             }
         }
 
-        public IPayable GetPaybleEmployee(int id)
+        public Employee GetPaybleEmployee(int id)
         {
             if(_employeeList.Count == 0) throw new Exception("Empty List");
 
             Employee emp = _employeeList.First(emp => emp.EmployeeId == id);
 
-            FullTimeEmployee e1 = new FullTimeEmployee("Raju", "rajuporiya@gmail.com", (Employee.EmployeeType)1, Employee.Department.BA_Dept,100,100);
+            //FullTimeEmployee e1 = new FullTimeEmployee("Raju", "rajuporiya@gmail.com", (Employee.EmployeeType)1, Employee.Department.BA_Dept,100,100);
 
 
-            return (IPayable)emp;
+            return emp;
         }
 
         public decimal CalculateSalary()

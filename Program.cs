@@ -64,7 +64,8 @@ public class Program
         //IPayable payable = (IPayable) e1;
         //payable.GenerateSalarySlip();
 
-        //PartTimeEmployee e2 = new PartTimeEmployee("Sumit", "sumit@google.com", (Employee.EmployeeType)1, Employee.Department.Marketing_Dept);
+        //PartTimeEmployee e2 = new PartTimeEmployee("Sumit", "sumit@google.com", (Employee.EmployeeType)1, Employee.Department.Marketing_Dept,1000,90);
+        //e2.AccountHolder();
         //e2.WorkingHour = 2m;
         //e2.HourlyRate = 100;
         //e2.CalculateSalary();

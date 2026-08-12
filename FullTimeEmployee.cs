@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal class FullTimeEmployee : Employee,IPayable
+    internal class FullTimeEmployee : Employee
     {
         private decimal _mothlySalary;
         private decimal _bouns = 100;
@@ -29,13 +29,13 @@ namespace EmployeeTask
             Bonus = bonus;
         }
 
-        public decimal CalculateSalary()
+        public override decimal CalculateSalary()
         {
             this.Salary = _mothlySalary + _bouns;
             return this.Salary;
         }
 
-        public decimal CalculateSalary(decimal bouns)
+        public  decimal CalculateSalary(decimal bouns)
         {
             Bonus = bouns;
             Console.WriteLine("Updated Bonus : " + _bouns);
@@ -43,7 +43,7 @@ namespace EmployeeTask
         }
 
 
-        public void GenerateSalarySlip()
+        public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();

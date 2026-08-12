@@ -4,8 +4,8 @@ using System.Text;
 
 namespace EmployeeTask
 {
-    internal abstract class Employee
-    {
+    internal abstract class Employee : IPayable
+     {
         public static int _counterId { get; private set; }
 
         public int EmployeeId { get; private set; }
@@ -44,6 +44,9 @@ namespace EmployeeTask
             Dept = dept;
         }
 
+
+        public abstract decimal CalculateSalary();
+        public  abstract void GenerateSalarySlip();
 
         public void AccountHolder()
         {
