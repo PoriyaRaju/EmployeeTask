@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EmployeeTask.exceptions;
+using EmployeeTask.interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EmployeeTask
+namespace EmployeeTask.abstracts
 {
     internal abstract class Employee : IPayable
      {

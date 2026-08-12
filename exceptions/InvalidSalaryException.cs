@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EmployeeTask
+namespace EmployeeTask.exceptions
 {
     internal class InvalidSalaryException : Exception
     {
