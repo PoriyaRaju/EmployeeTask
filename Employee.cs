@@ -7,6 +7,8 @@ namespace EmployeeTask
     internal abstract class Employee : IPayable
      {
         public static int _counterId { get; private set; }
+        private decimal _salary;
+        private decimal _extraBonus;
 
         public int EmployeeId { get; private set; }
         
@@ -25,12 +27,21 @@ namespace EmployeeTask
 
         public Department Dept { get; set; }
 
-        private decimal _salary;
-        protected decimal Salary { get { return _salary; } set { if (value <= 0) throw new InvalidSalaryException("Salary must be greater than Zero"); _salary = value; } }
+        protected decimal Salary {
+            get { return _salary; } 
+            set { 
+                if (value <= 0) throw new InvalidSalaryException("Salary must be greater than Zero"); 
+                _salary = value; 
+            } 
+        }
 
-        private decimal _extraBonus;
-        protected decimal ExtraBonus { get { return _extraBonus; } set { if (value < 0) throw new InvalidSalaryException("Extra Bonus must be greater than Zero"); _extraBonus = value; } }
-
+        protected decimal ExtraBonus { 
+            get { return _extraBonus; } 
+            set { 
+                if (value < 0) throw new InvalidSalaryException("Extra Bonus must be greater than Zero"); 
+                _extraBonus = value; 
+            } 
+        }
 
         public enum Department { 
             HR_Dept = 1,    
@@ -57,9 +68,9 @@ namespace EmployeeTask
 
         public  abstract void GenerateSalarySlip();
 
-        public void AccountHolder()
+        public override string ToString()
         {
-            Console.WriteLine($"{EmployeeId} | {Name} | {Email} | {Type} |{Dept}");
+            return  $"{EmployeeId} | {Name} | {Email} | {Type} |{Dept}";
         }
     }
 }

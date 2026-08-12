@@ -101,7 +101,7 @@ namespace EmployeeTask
             {
                 foreach (Employee e in _employeeList)
                 {
-                    e.AccountHolder();
+                    Console.WriteLine(e.ToString());
                 }
             }
             else

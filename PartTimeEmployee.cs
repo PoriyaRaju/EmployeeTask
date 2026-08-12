@@ -7,7 +7,6 @@ namespace EmployeeTask
     internal class PartTimeEmployee : Employee
     {
         private decimal _hourlyRate;
-
         private decimal _workingHour;
 
         public decimal HourlyRate
@@ -49,11 +48,10 @@ namespace EmployeeTask
             return Salary;
         }
 
-
         public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
-            base.AccountHolder();
+            Console.WriteLine(base.ToString());
 
             if (this.Salary == 0)
             {

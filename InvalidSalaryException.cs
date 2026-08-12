@@ -6,6 +6,7 @@ namespace EmployeeTask
 {
     internal class InvalidSalaryException : Exception
     {
+        public InvalidSalaryException() : base("Salary must be Positive...") { }
         public InvalidSalaryException(string message) : base(message) { }
     }
 }

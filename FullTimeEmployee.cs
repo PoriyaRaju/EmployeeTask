@@ -23,7 +23,6 @@ namespace EmployeeTask
             } 
         }
 
-        //public FullTimeEmployee() { };
         public FullTimeEmployee(string name, string email, EmployeeType type, Department dept, decimal monthlySalary,decimal bonus) : base(name, email, type, dept) { 
             MonthlySalary = monthlySalary;
             Bonus = bonus;
@@ -42,11 +41,10 @@ namespace EmployeeTask
             return Salary;
         }
 
-
         public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
-            base.AccountHolder();
+            Console.WriteLine(base.ToString());
 
 
             if (this.Salary == 0)

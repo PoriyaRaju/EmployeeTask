@@ -38,7 +38,7 @@ namespace EmployeeTask
         public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
-            base.AccountHolder();
+            Console.WriteLine(base.ToString());
 
             if (this.Salary == 0)
             {
