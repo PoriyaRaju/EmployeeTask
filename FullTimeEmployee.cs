@@ -24,11 +24,15 @@ namespace EmployeeTask
         }
 
         //public FullTimeEmployee() { };
-        public FullTimeEmployee(string name, string email, EmployeeType type, Department dept) : base(name, email, type, dept) { }
+        public FullTimeEmployee(string name, string email, EmployeeType type, Department dept, decimal monthlySalary,decimal bonus) : base(name, email, type, dept) { 
+            MonthlySalary = monthlySalary;
+            Bonus = bonus;
+        }
 
         public decimal CalculateSalary()
         {
-            return _mothlySalary + _bouns;
+            this.Salary = _mothlySalary + _bouns;
+            return this.Salary;
         }
 
         public decimal CalculateSalary(decimal bouns)
@@ -43,7 +47,7 @@ namespace EmployeeTask
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();
-            Console.WriteLine($"Monthly Salary :{_mothlySalary} \nBouns : {_bouns} \nSalary : {this.CalculateSalary()} \n");
+            Console.WriteLine($"Monthly Salary :{_mothlySalary} \nBouns : {_bouns} \nSalary : {this.Salary} \n");
 
         }
     }

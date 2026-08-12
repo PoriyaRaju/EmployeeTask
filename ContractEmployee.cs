@@ -6,8 +6,6 @@ namespace EmployeeTask
 {
     internal class ContractEmployee : Employee,IPayable
     {
-        public ContractEmployee(string name, string email, EmployeeType type ,Department dept) : base(name, email,type,dept) { }
-
         private decimal _fixedAmount;
 
         public decimal FixedAmount
@@ -17,13 +15,21 @@ namespace EmployeeTask
 
         }
 
-        public decimal CalculateSalary() { return _fixedAmount; }
+        public ContractEmployee(string name, string email, EmployeeType type ,Department dept, decimal fixedAmount) : base(name, email,type,dept) { 
+            FixedAmount = fixedAmount;
+        }
+
+        public decimal CalculateSalary() { 
+            base.Salary = FixedAmount;
+            return _fixedAmount; 
+        
+        }
         
         public void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();
-            Console.WriteLine($"Contact Amount :{FixedAmount} \nSalary : {this.CalculateSalary()} \n");
+            Console.WriteLine($"Contact Amount :{FixedAmount} \nSalary : {this.Salary} \n");
 
         }
     }

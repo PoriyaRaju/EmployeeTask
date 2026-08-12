@@ -6,7 +6,7 @@ namespace EmployeeTask
 {
     internal abstract class Employee
     {
-        public static int Id { get; private set; }
+        public static int _counterId { get; private set; }
 
         public int EmployeeId { get; private set; }
         
@@ -25,7 +25,7 @@ namespace EmployeeTask
 
         public Department Dept { get; set; }
 
-        //protected decimal Salary {  get; set; }
+        protected decimal Salary {  get; set; }
 
         public enum Department { 
             HR_Dept = 1,    
@@ -33,16 +33,17 @@ namespace EmployeeTask
             BA_Dept = 3
         }
 
-        public Employee() { }
         public Employee(string name, string email, EmployeeType type,Department dept)
         {
-            Id++;
-            EmployeeId = Id;
+            _counterId++;
+            EmployeeId = _counterId;
+            Type = type;
             //if(String.IsNullOrEmpty(name) || String.IsNullOrEmpty(email)) { throw new Exception("All fields mustbe Required"); }
             Name = name;
             Email = email;
             Dept = dept;
         }
+
 
         public void AccountHolder()
         {
