@@ -11,7 +11,10 @@ namespace EmployeeTask
         public decimal FixedAmount
         {
             get { return _fixedAmount; }
-            set { _fixedAmount = value; }
+            set {
+                if (value <= 0) throw new InvalidSalaryException("Fixed Amount must be greater than Zero.");
+                else { _fixedAmount = value; }
+            }
 
         }
 
@@ -20,17 +23,33 @@ namespace EmployeeTask
         }
 
         public override decimal CalculateSalary() { 
-            base.Salary = FixedAmount;
-            return _fixedAmount; 
+            Salary = FixedAmount;
+            return Salary; 
         
         }
-        
+
+        public override decimal CalculateSalary(decimal extBonus)
+        {
+            ExtraBonus = extBonus;
+            Salary = _fixedAmount + extBonus;
+            return Salary;
+        }
+
         public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();
-            Console.WriteLine($"Contact Amount :{FixedAmount} \nSalary : {this.Salary} \n");
 
+            if (this.Salary == 0)
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("First you Should Calculate Salary");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine($"Contact Amount :{FixedAmount}");
+            if (ExtraBonus != 0) Console.WriteLine($"Extra Bonus : {ExtraBonus}");
+            Console.WriteLine($"Salary : {this.Salary}");
         }
     }
 }

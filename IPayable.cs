@@ -7,6 +7,8 @@ namespace EmployeeTask
     internal interface IPayable
     {
         public decimal CalculateSalary();
+
+        //public decimal CalculateSalary(decimal extBouns);
         public void GenerateSalarySlip();
 
     }

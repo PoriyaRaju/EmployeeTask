@@ -15,14 +15,17 @@ namespace EmployeeTask
             get { return _hourlyRate; }
             set
             {
-                if (value < 0) throw new Exception("Hours Rate must be Greater than Zero");
+                if (value < 0) throw new InvalidSalaryException("Hours Rate must be Greater than Zero");
                 else _hourlyRate = value;
             }
         }
         public decimal WorkingHour
         {
             get { return _workingHour; }
-            set { _workingHour = value; }
+            set {
+                if (value <= 0) throw new InvalidSalaryException("Working Hour must be greater than Zero");
+                else{ _workingHour = value; }
+            }
 
         }
 
@@ -34,16 +37,35 @@ namespace EmployeeTask
 
         public override decimal CalculateSalary()
         {
-            this.Salary = _hourlyRate * _workingHour;
-            return this.Salary;
+            Salary = _hourlyRate * _workingHour;
+            Console.WriteLine($" Estimated Salary : {Salary}");
+            return Salary;
+        } 
+
+        public override decimal CalculateSalary(decimal extBonus)
+        {
+            ExtraBonus =  extBonus;
+            Salary = _hourlyRate * _workingHour + extBonus;
+            return Salary;
         }
+
 
         public override void GenerateSalarySlip()
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();
-            Console.WriteLine($"Hourly Salary :{_hourlyRate} \nWorking Hours : {_workingHour} \nSalary : {this.Salary} \n");
 
+            if (this.Salary == 0)
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("First you Should Calculate Salary");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+
+            Console.WriteLine($"Hourly Salary :{_hourlyRate} \nWorking Hours : {_workingHour}");
+            if (ExtraBonus != 0) Console.WriteLine($"Extra Bonus : {ExtraBonus}");
+            Console.WriteLine($"Salary : {this.Salary}");
         }
 
     }

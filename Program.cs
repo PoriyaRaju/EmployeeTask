@@ -9,43 +9,66 @@ public class Program
 
         PayrollService _payrollService = new PayrollService();
 
-        int choich;
+        int choich=1;
         do
         {
-            Console.WriteLine("Welcom to Payout Services");
-            Console.WriteLine("Menu Options \n1.Add Employee \n2.Display Employees \n3.Calculate Salary \n4.Generate Pay-slip \n5.Exit");
-
-            Console.Write("Enter Your Choich : ");
-            choich = Convert.ToInt32(Console.ReadLine());
-
-            switch (choich)
+            try
             {
-                case 1:
-                    _payrollService.AddEmployee();
-                    break;
+                Console.WriteLine("Welcom to Payout Services");
+                Console.WriteLine("Menu Options \n1.Add Employee \n2.Display Employees \n3.Calculate Salary \n4.Generate Pay-slip \n5.Exit");
 
-                case 2:
-                    _payrollService.DisplayEmployeeList();
-                    break;
+                Console.Write("Enter Your Choich : ");
+                choich = Convert.ToInt32(Console.ReadLine());
 
-                case 3:
-                    decimal salary =  _payrollService.CalculateSalary();
-                    Console.WriteLine($"Calculated Salary : {salary}");
-                    break;
+                switch (choich)
+                {
+                    case 1:
+                        _payrollService.AddEmployee();
+                        break;
 
-                case 4:
-                    _payrollService.GenerateSalarySlip();
-                    break;
+                    case 2:
+                        _payrollService.DisplayEmployeeList();
+                        break;
 
-                case 5:
-                    Console.WriteLine("Thanks for Your Response....");
-                    break;
+                    case 3:
+                        decimal salary = _payrollService.CalculateSalary();
+                        Console.WriteLine($"Calculated Salary : {salary}");
+                        break;
 
-                default:
-                    Console.WriteLine("Enter valid Choich...!!!");
-                    break;
+                    case 4:
+                        _payrollService.GenerateSalarySlip();
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Thanks for Your Response....");
+                        break;
+
+                    default:
+                        Console.WriteLine("Enter valid Choich...!!!");
+                        break;
+                }
+
+            }
+            catch (FormatException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
             }
 
+            Console.WriteLine("\n\n");
 
 
         } while (choich != 5);

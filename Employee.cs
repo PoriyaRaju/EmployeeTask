@@ -15,7 +15,7 @@ namespace EmployeeTask
         public string Email { get; set; }
 
         public EmployeeType Type { get; set; }
-        
+
         public enum EmployeeType
         {
             FULL_TIME = 1,
@@ -25,7 +25,12 @@ namespace EmployeeTask
 
         public Department Dept { get; set; }
 
-        protected decimal Salary {  get; set; }
+        private decimal _salary;
+        protected decimal Salary { get { return _salary; } set { if (value <= 0) throw new InvalidSalaryException("Salary must be greater than Zero"); _salary = value; } }
+
+        private decimal _extraBonus;
+        protected decimal ExtraBonus { get { return _extraBonus; } set { if (value < 0) throw new InvalidSalaryException("Extra Bonus must be greater than Zero"); _extraBonus = value; } }
+
 
         public enum Department { 
             HR_Dept = 1,    
@@ -35,17 +40,21 @@ namespace EmployeeTask
 
         public Employee(string name, string email, EmployeeType type,Department dept)
         {
-            _counterId++;
-            EmployeeId = _counterId;
+            if (String.IsNullOrEmpty(name) || String.IsNullOrEmpty(email)) { 
+                throw new ArgumentNullException("All argument Must be required"); 
+            }
             Type = type;
-            //if(String.IsNullOrEmpty(name) || String.IsNullOrEmpty(email)) { throw new Exception("All fields mustbe Required"); }
             Name = name;
             Email = email;
             Dept = dept;
+            EmployeeId = ++_counterId;
         }
 
 
         public abstract decimal CalculateSalary();
+
+        public abstract decimal CalculateSalary(decimal extBouns);
+
         public  abstract void GenerateSalarySlip();
 
         public void AccountHolder()

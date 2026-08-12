@@ -7,18 +7,18 @@ namespace EmployeeTask
     internal class FullTimeEmployee : Employee
     {
         private decimal _mothlySalary;
-        private decimal _bouns = 100;
+        private decimal _bouns;
 
         public decimal MonthlySalary { 
             get { return _mothlySalary; } 
             set{
-                if (value <= 0) throw new Exception("Monthly Salary must be greater than 0");
+                if (value <= 0) throw new InvalidSalaryException("Monthly Salary must be greater than 0");
                 else _mothlySalary = value;
             } 
         }
 
         public decimal Bonus { get { return _bouns; } set {
-                if (value < 0) throw new Exception("Bouns must be greater than 0");
+                if (value < 0) throw new InvalidSalaryException("Bouns must be greater than 0");
                 else _bouns = value;
             } 
         }
@@ -35,11 +35,11 @@ namespace EmployeeTask
             return this.Salary;
         }
 
-        public  decimal CalculateSalary(decimal bouns)
+        public override decimal CalculateSalary(decimal extBouns)
         {
-            Bonus = bouns;
-            Console.WriteLine("Updated Bonus : " + _bouns);
-            return _mothlySalary + _bouns;
+            ExtraBonus = extBouns;
+            Salary = _mothlySalary + _bouns + extBouns;
+            return Salary;
         }
 
 
@@ -47,7 +47,19 @@ namespace EmployeeTask
         {
             Console.WriteLine("Salary Slip : ");
             base.AccountHolder();
-            Console.WriteLine($"Monthly Salary :{_mothlySalary} \nBouns : {_bouns} \nSalary : {this.Salary} \n");
+
+
+            if (this.Salary == 0)
+            {
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("First you Should Calculate Salary");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+
+            Console.WriteLine($"Monthly Salary :{_mothlySalary} \nBouns : {_bouns}");
+            if (ExtraBonus != 0) Console.WriteLine($"Extra Bonus : {ExtraBonus}");
+            Console.WriteLine($"Salary : {this.Salary}");
 
         }
     }
