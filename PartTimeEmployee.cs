@@ -14,7 +14,7 @@ namespace EmployeeTask
         public decimal HourlyRate
         {
             get { return _hourlyRate; }
-            set
+            private set
             {
                 if (value < 0) throw new InvalidSalaryException("Hours Rate must be Greater than Zero");
                 else _hourlyRate = value;
@@ -23,7 +23,7 @@ namespace EmployeeTask
         public decimal WorkingHour
         {
             get { return _workingHour; }
-            set {
+            private set {
                 if (value <= 0) throw new InvalidSalaryException("Working Hour must be greater than Zero");
                 else{ _workingHour = value; }
             }
@@ -34,7 +34,7 @@ namespace EmployeeTask
         {
             HourlyRate = hourlyRate;
             WorkingHour = workingHour;
-            EmployeeId = ++_counterId;
+            EmployeeId = ++CounterId;
         }
 
         public override decimal CalculateSalary()

@@ -1,15 +1,16 @@
 ﻿using EmployeeTask.abstracts;
+using EmployeeTask.exceptions;
 using EmployeeTask.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EmployeeTask
+namespace EmployeeTask.Services
 {
     internal class PayrollService : IPayable
     {
-        private readonly List<Employee> _employeeList = new List<Employee>();
+        private readonly List<Employee> _employeeList;
 
+        public PayrollService(List<Employee> employeeList) {
+            _employeeList =  employeeList;
+        }
 
         public void AddEmployee()
         {
@@ -79,6 +80,13 @@ namespace EmployeeTask
                     decimal wprkingHour = Convert.ToDecimal(Console.ReadLine());
 
                     emp = new PartTimeEmployee(name, email, (Employee.EmployeeType)empType, (Employee.Department)dept, hourlyRate, wprkingHour);
+
+                    //PartTimeEmployee emp1 = new PartTimeEmployee(name, email, (Employee.EmployeeType)empType, (Employee.Department)dept, hourlyRate, wprkingHour);
+                    //emp1.HourlyRate = hourlyRate;
+                    //hourlyRate = emp1.HourlyRate;
+                    //emp1.Salary = 100m;
+                    //Console.WriteLine(emp1.Salary);
+                    
                     _employeeList.Add(emp);
                     break;
 
@@ -87,6 +95,11 @@ namespace EmployeeTask
                     decimal fixedAmount = Convert.ToDecimal(Console.ReadLine());
 
                     emp = new ContractEmployee(name, email, (Employee.EmployeeType)empType, (Employee.Department)dept, fixedAmount);
+
+                    //ContractEmployee emp1 = new ContractEmployee(name, email, (Employee.EmployeeType)empType, (Employee.Department)dept, fixedAmount);
+                    //emp1.FixedAmount = fixedAmount;
+                    //fixedAmount = emp1.FixedAmount;
+
                     _employeeList.Add(emp);
                     break;
 
@@ -101,49 +114,26 @@ namespace EmployeeTask
         {
             if (_employeeList.Count <= 0)
             {
-                throw new Exception("Empty List");
+                throw new EmployeeNotFoundException();
             }
             foreach (Employee e in _employeeList)
             {
                 Console.WriteLine(e.ToString());
+
             }
 
-        }
-
-        public Employee GetPaybleEmployee(int id)
-        {
-            if (_employeeList.Count == 0) throw new Exception("Empty List");
-
-            Employee emp = _employeeList.First(emp => emp.EmployeeId == id);
-
-            //FullTimeEmployee e1 = new FullTimeEmployee("Raju", "rajuporiya@gmail.com", (Employee.EmployeeType)1, Employee.Department.BA_Dept,100,100);
-
-            return emp;
         }
 
         public decimal CalculateSalary()
         {
-            if (_employeeList.Count <= 0)
-            {
-                throw new Exception("Empty List");
-            }
-
-            int employeeId;
-            do
-            {
-                Console.Write("Enter Employee Id : ");
-                employeeId = Convert.ToInt32(Console.ReadLine());
-
-                if (employeeId <= Employee._counterId && employeeId > 0) break;
-
-            } while (true);
-
-            Employee e = GetPaybleEmployee(employeeId);
+            Employee e = GetPaybleEmployee();
 
             Console.Write("Do you want to add Extra Bonus : Then presss 'Y'  : ");
-            char choich = Convert.ToChar(Console.ReadLine().ToUpper());
+            ConsoleKeyInfo choich = Console.ReadKey();
+       
+            Console.WriteLine();
 
-            if (choich == 'Y')
+            if (Convert.ToChar(choich.Key) == 'Y')
             {
                 Console.Write("Add Extra Bonus : ");
                 decimal extraBonus = Convert.ToDecimal(Console.ReadLine());
@@ -154,19 +144,24 @@ namespace EmployeeTask
 
         public void GenerateSalarySlip()
         {
+            Console.WriteLine("Salary Slip :");
+            GetPaybleEmployee().GenerateSalarySlip();
+        }
+
+        public Employee GetPaybleEmployee()
+        {
             if (_employeeList.Count <= 0)
             {
-                throw new Exception("Empty List");
+                throw new EmployeeNotFoundException();
             }
-
-            Console.WriteLine("Salary Slip");
             int employeeId;
             do
             {
                 Console.Write("Enter Employee Id : ");
                 employeeId = Convert.ToInt32(Console.ReadLine());
 
-                if (employeeId <= Employee._counterId && employeeId > 0) break;
+                //Employee.CounterId++;
+                if (employeeId <= Employee.CounterId && employeeId > 0) break;
                 else
                 {
 
@@ -176,10 +171,11 @@ namespace EmployeeTask
                 }
             } while (true);
 
-            Console.WriteLine();
-            GetPaybleEmployee(employeeId).GenerateSalarySlip();
+            Employee emp = _employeeList.First(emp => emp.EmployeeId == employeeId);
 
+            return emp;
         }
+
 
     }
 }

@@ -13,7 +13,7 @@ namespace EmployeeTask
         public decimal FixedAmount
         {
             get { return _fixedAmount; }
-            set {
+            private set {
                 if (value <= 0) throw new InvalidSalaryException("Fixed Amount must be greater than Zero.");
                 else { _fixedAmount = value; }
             }
@@ -22,7 +22,7 @@ namespace EmployeeTask
 
         public ContractEmployee(string name, string email, EmployeeType type ,Department dept, decimal fixedAmount) : base(name, email,type,dept) { 
             FixedAmount = fixedAmount;
-            EmployeeId = ++_counterId;
+            EmployeeId = ++CounterId;
         }
 
         public override decimal CalculateSalary() { 

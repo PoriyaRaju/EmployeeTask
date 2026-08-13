@@ -8,17 +8,18 @@ namespace EmployeeTask.abstracts
 {
     internal abstract class Employee : IPayable
      {
-        public static int _counterId { get; set; }
+        public static int CounterId { get; protected set; }
+
         private decimal _salary;
         private decimal _extraBonus;
 
-        public int EmployeeId { get; set; }
+        public int EmployeeId { get; protected set; }
         
-        public string Name { get; set; }
+        public string Name { get; private set; }
         
-        public string Email { get; set; }
+        public string Email { get; private set; }
 
-        public EmployeeType Type { get; set; }
+        public EmployeeType Type { get; private set; }
 
         public enum EmployeeType
         {
@@ -27,11 +28,11 @@ namespace EmployeeTask.abstracts
             CONTRACT_BASE =3
         }
 
-        public Department Dept { get; set; }
+        public Department Dept { get; private set; }
 
-        protected decimal Salary {
+        public decimal Salary {
             get { return _salary; } 
-            set { 
+            protected set { 
                 if (value <= 0) throw new InvalidSalaryException("Salary must be greater than Zero"); 
                 _salary = value; 
             } 

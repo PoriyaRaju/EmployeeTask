@@ -12,14 +12,17 @@ namespace EmployeeTask
         private decimal _bouns;
 
         public decimal MonthlySalary { 
-            get { return _mothlySalary; } 
-            set{
+            get { return _mothlySalary; }
+            private set
+            {
                 if (value <= 0) throw new InvalidSalaryException("Monthly Salary must be greater than 0");
                 else _mothlySalary = value;
             } 
         }
 
-        public decimal Bonus { get { return _bouns; } set {
+        public decimal Bonus { 
+            get { return _bouns; } 
+            private set {
                 if (value < 0) throw new InvalidSalaryException("Bouns must be greater than 0");
                 else _bouns = value;
             } 
@@ -28,7 +31,7 @@ namespace EmployeeTask
         public FullTimeEmployee(string name, string email, EmployeeType type, Department dept, decimal monthlySalary,decimal bonus) : base(name, email, type, dept) { 
             MonthlySalary = monthlySalary;
             Bonus = bonus;
-            EmployeeId = ++_counterId;
+            EmployeeId = ++CounterId;
         }
 
         public override decimal CalculateSalary()

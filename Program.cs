@@ -1,5 +1,6 @@
-﻿using System.Transactions;
-
+﻿using EmployeeTask.abstracts;
+using EmployeeTask.exceptions;
+using EmployeeTask.Services;
 namespace EmployeeTask;
 
 public class Program
@@ -7,7 +8,7 @@ public class Program
     public static void Main(string[] args)
     {
 
-        PayrollService _payrollService = new PayrollService();
+        PayrollService _payrollService = new PayrollService(new List<Employee>());
 
         int choich=1;
         do
@@ -58,6 +59,18 @@ public class Program
                 Console.ForegroundColor = ConsoleColor.White;
             }
             catch (ArgumentNullException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+
+            }catch(InvalidSalaryException e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+            
+            }catch(EmployeeNotFoundException e)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
