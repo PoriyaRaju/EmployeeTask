@@ -28,6 +28,7 @@ namespace EmployeeTask
         public FullTimeEmployee(string name, string email, EmployeeType type, Department dept, decimal monthlySalary,decimal bonus) : base(name, email, type, dept) { 
             MonthlySalary = monthlySalary;
             Bonus = bonus;
+            EmployeeId = ++_counterId;
         }
 
         public override decimal CalculateSalary()

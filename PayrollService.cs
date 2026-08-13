@@ -99,17 +99,15 @@ namespace EmployeeTask
 
         public void DisplayEmployeeList()
         {
-            if (_employeeList.Count > 0)
+            if (_employeeList.Count <= 0)
             {
-                foreach (Employee e in _employeeList)
-                {
-                    Console.WriteLine(e.ToString());
-                }
+                throw new Exception("Empty List");
             }
-            else
+            foreach (Employee e in _employeeList)
             {
-                Console.WriteLine("There is no data Found");
+                Console.WriteLine(e.ToString());
             }
+
         }
 
         public Employee GetPaybleEmployee(int id)
@@ -125,6 +123,11 @@ namespace EmployeeTask
 
         public decimal CalculateSalary()
         {
+            if (_employeeList.Count <= 0)
+            {
+                throw new Exception("Empty List");
+            }
+
             int employeeId;
             do
             {
@@ -151,6 +154,11 @@ namespace EmployeeTask
 
         public void GenerateSalarySlip()
         {
+            if (_employeeList.Count <= 0)
+            {
+                throw new Exception("Empty List");
+            }
+
             Console.WriteLine("Salary Slip");
             int employeeId;
             do

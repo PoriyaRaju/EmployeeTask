@@ -22,6 +22,7 @@ namespace EmployeeTask
 
         public ContractEmployee(string name, string email, EmployeeType type ,Department dept, decimal fixedAmount) : base(name, email,type,dept) { 
             FixedAmount = fixedAmount;
+            EmployeeId = ++_counterId;
         }
 
         public override decimal CalculateSalary() { 

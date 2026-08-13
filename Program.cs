@@ -44,7 +44,9 @@ public class Program
                         break;
 
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Enter valid Choich...!!!");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
 

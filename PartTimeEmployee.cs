@@ -34,6 +34,7 @@ namespace EmployeeTask
         {
             HourlyRate = hourlyRate;
             WorkingHour = workingHour;
+            EmployeeId = ++_counterId;
         }
 
         public override decimal CalculateSalary()

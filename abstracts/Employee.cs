@@ -8,11 +8,11 @@ namespace EmployeeTask.abstracts
 {
     internal abstract class Employee : IPayable
      {
-        public static int _counterId { get; private set; }
+        public static int _counterId { get; set; }
         private decimal _salary;
         private decimal _extraBonus;
 
-        public int EmployeeId { get; private set; }
+        public int EmployeeId { get; set; }
         
         public string Name { get; set; }
         
@@ -60,7 +60,6 @@ namespace EmployeeTask.abstracts
             Name = name;
             Email = email;
             Dept = dept;
-            EmployeeId = ++_counterId;
         }
 
 
