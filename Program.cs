@@ -44,6 +44,11 @@ public class Program
                         Console.WriteLine("Thanks for Your Response....");
                         break;
 
+                    //case 6:
+                    //    Console.WriteLine("Sort the Employee List");
+                    //    _payrollService.SortedEmployeeList();
+                    //    break;
+
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Enter valid Choich...!!!");

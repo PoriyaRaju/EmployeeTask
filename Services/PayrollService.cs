@@ -1,11 +1,13 @@
 ﻿using EmployeeTask.abstracts;
 using EmployeeTask.exceptions;
 using EmployeeTask.interfaces;
+using EmployeeTask.utils;
 
 namespace EmployeeTask.Services
 {
     internal class PayrollService : IPayable
     {
+        // Concepts of Composition + readonly
         private readonly List<Employee> _employeeList;
 
         public PayrollService(List<Employee> employeeList) {
@@ -176,6 +178,21 @@ namespace EmployeeTask.Services
             return emp;
         }
 
+
+        public void  SortedEmployeeList()
+        {
+            if (_employeeList.Count <= 0)
+            {
+                throw new EmployeeNotFoundException();
+            }
+
+            _employeeList.Sort(new EmployeeComparator());
+
+            foreach (Employee e in _employeeList)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
 
     }
 }
